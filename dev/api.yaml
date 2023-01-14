@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: eksapi
-        image: 035348963836.dkr.ecr.eu-west-1.amazonaws.com/eksapi:1
+        image: 035348963836.dkr.ecr.eu-west-1.amazonaws.com/eksapi:2
         ports:
         - containerPort: 5000
 
