@@ -1,0 +1,37 @@
+# create a k8 deployment with 3 replicas of eksapi:latest and expose it as a service on port 5000
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eksapi
+  labels:
+    app: eksapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: eksapi
+  template:
+    metadata:
+      labels:
+        app: eksapi
+    spec:
+      containers:
+      - name: eksapi
+        image: 035348963836.dkr.ecr.eu-west-1.amazonaws.com/eksapi:1
+        ports:
+        - containerPort: 5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: eksapi-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: eksapi
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
